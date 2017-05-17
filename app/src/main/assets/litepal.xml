@@ -1,0 +1,9 @@
+<litepal>
+    <dbname values="my_weather"/>
+    <version values="1"/>
+    <list>
+        <mapping class="com.clark.weathertest.db.Province"/>
+        <mapping class="com.clark.weathertest.db.City"/>
+        <mapping class="com.clark.weathertest.db.County"/>
+    </list>
+</litepal>
