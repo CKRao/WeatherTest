@@ -1,6 +1,7 @@
 package com.clark.weathertest;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.clark.weathertest.util.Utility;
 import org.litepal.crud.DataSupport;
 
 import java.io.IOException;
+import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +99,12 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
+                } else if (currentLevel == LEVEL_COUNTY) {
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -120,7 +128,7 @@ public class ChooseAreaFragment extends Fragment {
         titleText.setText("中国");
         backButton.setVisibility(View.GONE);
 //        if (DataSupport.findAll(Province.class) != null) {
-            provinceList = DataSupport.findAll(Province.class);
+        provinceList = DataSupport.findAll(Province.class);
 //        } else {
 //            provinceList = new ArrayList<>();
 //        }
@@ -212,7 +220,7 @@ public class ChooseAreaFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
 
                 String responseText = response.body().string();
-                Log.d("onResponse", "onResponse: "+responseText);
+                Log.d("onResponse", "onResponse: " + responseText);
                 boolean result = false;
                 if ("province".equals(type)) {
                     result = Utility.handleProvincesResponse(responseText);
