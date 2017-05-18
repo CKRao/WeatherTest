@@ -1,14 +1,16 @@
 package com.clark.weathertest.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by clark on 2017/5/17.
  */
 
-public class County {
+public class County extends DataSupport{
     private int id;
     private String countyName;
     private String weatherId;
-    private int citId;
+    private int cityId;
 
     public int getId() {
         return id;
@@ -34,11 +36,11 @@ public class County {
         this.weatherId = weatherId;
     }
 
-    public int getCitId() {
-        return citId;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCitId(int citId) {
-        this.citId = citId;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 }

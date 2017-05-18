@@ -1,10 +1,12 @@
 package com.clark.weathertest.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by clark on 2017/5/17.
  */
 
-public class City {
+public class City extends DataSupport{
     private int id;
     private String cityName;
     private int cityCode;
